@@ -6,16 +6,21 @@ export class App extends Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
   };
   handleNameChange = event => {
     this.setState({name: event.currentTarget.value});
-  }
+  };
+  handleNumberChange = event => {
+    this.setState({number: event.currentTarget.value});
+  };
   handleSubmit = event => {
     event.preventDefault();
-    this.setState({contacts: [...this.state.contacts, {name: this.state.name, id: nanoid()}]});
+    this.setState({contacts: [...this.state.contacts, {name: this.state.name,number:this.state.number, id: nanoid()}]});
     this.setState({name: ''});
-  
-  }
+    this.setState({number: ''});
+    
+  };
 
 
   render(){
@@ -35,12 +40,24 @@ export class App extends Component {
   required
 />
       </label>
+      <label>
+        Number
+        <input
+  type="tel"
+  name="number"
+  value={this.state.number}
+  onChange={this.handleNumberChange}
+  pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+  title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+  required
+/>
+      </label>
       <button type="sumbit">Add contact</button>
     </form>
     <h2>Contacts</h2>
     <ul>
     {this.state.contacts.map((contact => (
-      <li key={contact.id}>{contact.name}</li>
+      <li key={contact.id}>{contact.name}: {contact.number}</li>
     )))}
     </ul>
       </div>
