@@ -15,6 +15,10 @@ export class App extends Component {
   };
 
   handleSubmitForm = ({name,number}) =>{
+    if(this.state.contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase())) {
+      window.alert("This name is already in the contact list.");
+      return;
+    }
     this.setState({contacts: [...this.state.contacts, {name: name,number:number, id: nanoid()}]});
   };
   handleFilterChange = event => {
