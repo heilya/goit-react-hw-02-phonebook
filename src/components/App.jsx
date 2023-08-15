@@ -25,6 +25,14 @@ export class App extends Component {
     this.setState({filter: event.currentTarget.value});
   };
 
+  handleDelete =(id)=>{
+    this.setState(prevState=>{
+      return {
+        contacts: prevState.contacts.filter(contact => contact.id!== id)
+      }
+    })
+  }
+
 
 
   render(){
@@ -38,7 +46,7 @@ const visibleContacts = this.state.contacts.filter(contact => contact.name.toLow
     <ContactForm onSumbit={this.handleSubmitForm}/>
     <h2>Contacts</h2>
     <Filter value={this.state.filter} onChange={this.handleFilterChange}/>
-    <ContactList contacts={visibleContacts}/>
+    <ContactList contacts={visibleContacts} onDelete={this.handleDelete}/>
   </div>
     ); 
   }
