@@ -41,7 +41,13 @@ const visibleContacts = this.state.contacts.filter(contact => contact.name.toLow
 
 
     return (
-  <div>
+  <div style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    color: '#010101',
+  }}>
     <h1>Phonebook</h1>
     <ContactForm onSumbit={this.handleSubmitForm}/>
     <h2>Contacts</h2>
